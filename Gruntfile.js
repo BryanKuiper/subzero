@@ -1,8 +1,7 @@
 module.exports = function(grunt) {
 
-
-
     grunt.initConfig({
+
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             options: {
@@ -39,6 +38,7 @@ module.exports = function(grunt) {
             files: ['<%= jshint.files %>', 'index.html.tmpl'],
             tasks: ['jshint', 'index']
         },
+
         connect: {
             server: {
                 options: {
@@ -115,5 +115,6 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint']);
 
     grunt.registerTask('default', ['jshint', 'less', 'concat', 'uglify', 'index', 'connect', 'watch']);
+    //grunt.registerTask('default', ['watch'])
 
 };

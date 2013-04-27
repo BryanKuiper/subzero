@@ -1,0 +1,21 @@
+{
+  "name": "jsheaven",
+  "version": "0.0.1",
+  "description": "A base directory for future references",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "~0.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ilinea/subzero.git"
+  },
+  "author": "Ilinea",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc"
+}
