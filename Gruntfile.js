@@ -100,6 +100,20 @@ module.exports = function(grunt) {
 
     });
 
+    function abstractTags(srcFile) {
+
+        var gruntPackage = grunt.file.readJSON('package.json');
+        var project = gruntPackage.project;
+
+        for (var i in project) {
+            if ((project.hasOwnProperty(i)) && (srcFile.indexOf("{{" + i + "}}") > -1)) {
+                var replaceItem = new RegExp("{{" + i + "}}", "g");
+                srcFile = srcFile.replace(replaceItem, project[i]);
+            }
+        }
+        return srcFile;
+    }
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -108,8 +122,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.registerTask("index", "Generate index.html depending on configuration", function() {
-        var tmpl = grunt.file.read("index.html.tmpl");
-        grunt.file.write("build/index.html", grunt.template.process(tmpl));
+        var src = abstractTags(grunt.file.read("index.html.tmpl"));
+        grunt.file.write("build/index.html", grunt.template.process(src));
     });
 
     grunt.registerTask('test', ['jshint']);

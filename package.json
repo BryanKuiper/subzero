@@ -17,5 +17,11 @@
   "author": "Ilinea",
   "license": "BSD",
   "readmeFilename": "README.md",
-  "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc"
+  "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc",
+  "project": {
+      "name": "jsHeaven",
+      "title": "Welcome at jsHeaven",
+      "description": "Your meeting place for JS",
+      "keys": "JS, Javascript, script"
+  }
 }
