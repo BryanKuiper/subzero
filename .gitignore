@@ -4,3 +4,8 @@
 #Grunt build
 /build
 /_template
+
+#XCode files
+Alex/Alex.xcodeproj
+Alex/Alex
+Alex/AlexTests
