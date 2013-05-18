@@ -5,12 +5,13 @@
 /build
 /_template
 
-# All in Alex/Alex directory
-Alex
-Alex/Alex
-Alex/Alex/en.lproj
+#All in Alex/Alex directory
+/Alex
+/Alex/Alex
+/Alex/Alex/Alex-Info.plist
+/Alex/Alex/en.lproj
 
-# All in Alex/Alex.xcodeproj directory
+#All in Alex/Alex.xcodeproj directory
 Alex/Alex.xcodeproj
 Alex/Alex.xcodeproj/project.xcworkspace
 Alex/Alex.xcodeproj/project.xcworkspace/xcuserdata
@@ -19,6 +20,6 @@ Alex/Alex.xcodeproj/xcuserdata
 Alex/Alex.xcodeproj/xcuserdata/Alex.xcuserdatad
 Alex/Alex.xcodeproj/xcuserdata/Alex.xcuserdatad/xcschemes
 
-# All in Alex/AlexTests directory
+#All in Alex/AlexTests directory
 Alex/AlexTests
 Alex/AlexTests/en.lproj
