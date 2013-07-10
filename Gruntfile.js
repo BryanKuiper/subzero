@@ -1,10 +1,69 @@
 module.exports = function(grunt) {
 
     var sources = {
+        // let grunt handle it
+        "js": [],
+        "libs": [],
+        "tmpl": [],
+
+        // only specified tests
         "tests": [
             "setup"
         ]
     };
+
+    grunt.file.recurse("js", function(abspath, rootdir, subdir, filename) {
+        var include = false;
+        if (filename.substr(-3) === ".js") {
+            include = true;
+        }
+
+        if (include) {
+            if (subdir === "lib") {
+                if (filename === "less" || filename === "require") {
+                    // less will take care of itself
+                    // require.js is never packaged
+                } else {
+                    sources.libs.push(filename.substr(0, filename.length - 3));
+                }
+            } else {
+                sources.js.push((subdir ? subdir + "/" : "") +
+                    filename.substr(0, filename.length - 3));
+            }
+        }
+    });
+
+    function requirePaths() {
+
+        var paths = {};
+        var jsPrefix = (config.isPackaged ? "js/" : "../js/");
+        if (options.compiled) {
+            sources.js.forEach(function(baseName) {
+                paths[baseName] = jsPrefix + "app";
+            });
+            sources.libs.forEach(function(baseName) {
+                paths[baseName] = jsPrefix + "libs";
+            });
+            sources.tmpl.forEach(function(baseName) {
+                paths["tmpl/" + baseName] = jsPrefix + "tmpl";
+            });
+        } else {
+            sources.js.forEach(function(baseName) {
+                paths[baseName] = jsPrefix + baseName;
+            });
+            sources.libs.forEach(function(baseName) {
+                paths[baseName] = jsPrefix + "lib/" + baseName;
+            });
+            sources.tmpl.forEach(function(baseName) {
+                paths["tmpl/" + baseName] = "tmpl/" + baseName;
+            });
+        }
+        if (!config.isProduction) {
+            paths.mockdata = "../tests/mockdata";
+        }
+        paths.tmpl = jsPrefix + "tmpl";
+        return paths;
+    }
 
     grunt.initConfig({
 
@@ -43,6 +102,47 @@ module.exports = function(grunt) {
         "watch": {
             "files": ["<%= jshint.files %>", "index.html.tmpl"],
             "tasks": ["jshint", "index"]
+        },
+
+        requirejs: {
+            options: {
+                paths: {
+
+                },
+                shim: {
+                    "backbone": { deps: ["underscore", "jquery"], exports: "Backbone" },
+                    "handlebars": { exports: "Handlebars" },
+                    "underscore": { exports: "_" }
+                }
+            },
+            compile: {
+                options: {
+                    appDir: ".",
+                    baseUrl: "./",
+                    dir: "build",
+                    enforceDefine: true,
+                    optimizeCss: false,
+                    keepBuildDir: true,
+                    fileExclusionRegExp: /^\.|^Gruntfile.js$|^node_modules/,
+
+                    modules: [
+                        {
+                            name: "js/app",
+                            include: createPaths("js/", sources.js, ".js"),
+                            exclude: sources.libs
+                        },
+                        {
+                            name: "js/libs",
+                            include: sources.libs
+                        },
+                        {
+                            name: "js/tmpl",
+                            include: createPaths("tmpl/", sources.tmpl, ".js"),
+                            exclude: sources.libs
+                        }
+                    ]
+                }
+            }
         },
 
         "connect": {
@@ -142,6 +242,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-concat");
+    grunt.loadNpmTasks("grunt-contrib-requirejs");
     grunt.loadNpmTasks("grunt-contrib-connect");
 
     grunt.registerTask("index", "Generate index.html depending on configuration", function() {
