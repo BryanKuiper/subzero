@@ -2,49 +2,49 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
 
-        pkg: grunt.file.readJSON('package.json'),
-        concat: {
-            options: {
-                separator: ';'
+        "pkg": grunt.file.readJSON("package.json"),
+        "concat": {
+            "options": {
+                "separator": ";"
             },
-            dist: {
-                src: ['/js/**/*.js'],
-                dest: 'build/js/<%= pkg.name %>.js'
+            "dist": {
+                "src": ["/js/**/*.js"],
+                "dest": "build/js/<%= pkg.name %>.js"
             }
         },
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        "uglify": {
+            "options": {
+                "banner": "/*! <%= pkg.name %> <%= grunt.template.today('dd-mm-yyyy') %> */\n"
             },
-            dist: {
-                files: {
-                    'build/js/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+            "dist": {
+                "files": {
+                    "build/js/<%= pkg.name %>.min.js": ["<%= concat.dist.dest %>"]
                 }
             }
         },
-        jshint: {
-            files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-            options: {
+        "jshint": {
+            "files": ["gruntfile.js", "src/**/*.js", "test/**/*.js"],
+            "options": {
                 // options here to override JSHint defaults
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true,
-                    document: true
+                "globals": {
+                    "jQuery": true,
+                    "console": true,
+                    "module": true,
+                    "document": true
                 }
             }
         },
-        watch: {
-            files: ['<%= jshint.files %>', 'index.html.tmpl'],
-            tasks: ['jshint', 'index']
+        "watch": {
+            "files": ["<%= jshint.files %>", "index.html.tmpl"],
+            "tasks": ["jshint", "index"]
         },
 
-        connect: {
-            server: {
-                options: {
-                    port: 4002,
-                    base: ".",
-                    middleware: function(connect, options) {
+        "connect": {
+            "server": {
+                "options": {
+                    "port": 4002,
+                    "base": ".",
+                    "middleware": function(connect, options) {
                         return [
                             connect.static(options.base),
                             function(req, res) {
@@ -78,21 +78,21 @@ module.exports = function(grunt) {
             }
         },
 
-        less: {
-            development: {
-                options: {
-                    paths: ["css"]
+        "less": {
+            "development": {
+                "options": {
+                    "paths": ["css"]
                 },
-                files: {
+                "files": {
                     "build/css/jsheaven.css": "css/jsheaven.less"
                 }
             },
-            production: {
-                options: {
-                    paths: ["css"],
-                    yuicompress: true
+            "production": {
+                "options": {
+                    "paths": ["css"],
+                    "yuicompress": true
                 },
-                files: {
+                "files": {
                     "build/css/jsheaven.css": "css/jsheaven.less"
                 }
             }
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
 
     function abstractTags(srcFile) {
 
-        var gruntPackage = grunt.file.readJSON('package.json');
+        var gruntPackage = grunt.file.readJSON("package.json");
         var project = gruntPackage.project;
 
         for (var i in project) {
@@ -114,20 +114,21 @@ module.exports = function(grunt) {
         return srcFile;
     }
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks("grunt-casperjs");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-contrib-less");
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-concat");
+    grunt.loadNpmTasks("grunt-contrib-connect");
 
     grunt.registerTask("index", "Generate index.html depending on configuration", function() {
         var src = abstractTags(grunt.file.read("index.html.tmpl"));
         grunt.file.write("build/index.html", grunt.template.process(src));
     });
 
-    grunt.registerTask('test', ['jshint']);
+    grunt.registerTask("test", ["jshint", "casperjs"]);
 
-    grunt.registerTask('default', ['jshint', 'less', 'concat', 'uglify', 'index', 'connect', 'watch']);
+    grunt.registerTask("default", ["jshint", "less", "concat", "uglify", "index", "connect", "watch"]);
 
 };
