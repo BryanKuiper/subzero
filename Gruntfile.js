@@ -1,5 +1,11 @@
 module.exports = function(grunt) {
 
+    var sources = {
+        "tests": [
+            "setup"
+        ]
+    };
+
     grunt.initConfig({
 
         "pkg": grunt.file.readJSON("package.json"),
@@ -96,9 +102,25 @@ module.exports = function(grunt) {
                     "build/css/jsheaven.css": "css/jsheaven.less"
                 }
             }
+        },
+
+        "casperjs": {
+            "options": {
+                "verbose": true,
+                "logLevel": "debug"
+            },
+            "files": createPaths("tests/test", sources.tests, ".js")
         }
 
     });
+
+    function createPaths(prefix, fileNames, extension) {
+        var paths = [];
+        fileNames.forEach(function(fileName) {
+            paths.push(prefix + fileName + (extension || ""));
+        });
+        return paths;
+    }
 
     function abstractTags(srcFile) {
 

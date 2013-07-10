@@ -6,7 +6,9 @@
   "dependencies": {
     "grunt": "~0.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt-casperjs": "~1.0.6"
+  },
   "scripts": {
     "test": ""
   },
@@ -19,9 +21,9 @@
   "readmeFilename": "README.md",
   "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc",
   "project": {
-      "name": "jsHeaven",
-      "title": "Welcome at jsHeaven",
-      "description": "Your meeting place for javascript",
-      "keys": "JS, Javascript, script"
+    "name": "jsHeaven",
+    "title": "Welcome at jsHeaven",
+    "description": "Your meeting place for javascript",
+    "keys": "JS, Javascript, script"
   }
 }
