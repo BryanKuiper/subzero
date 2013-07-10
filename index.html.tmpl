@@ -154,6 +154,23 @@
                 </div>
             </div>
         </div>
-        <script></script>
+        <%
+            if (grunt.config("isPackaged")) {
+                print("<script src=\"js/lib/require.js\"></script>");
+            } else {
+                print("<script src=\"../js/lib/require.js\"></script>");
+            }
+
+            print(
+                "<script>" +
+                    "var JSH = {};" +
+
+                    "require.config(" + JSON.stringify(grunt.config("requirejsConfig")) + ");" +
+                    "require(['application', 'tmpl'], function(Application) { " +
+                        "JSH.application = new Application(); " +
+                    "});" +
+                "</script>"
+            );
+        %>
     </body>
 </html>

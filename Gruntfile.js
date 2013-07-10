@@ -1,5 +1,13 @@
 module.exports = function(grunt) {
 
+    var locale = grunt.option("locale") || "en";
+
+    // default external config
+    var config = {
+        isPackaged: false,
+        isProduction: false
+    };
+
     var sources = {
         // let grunt handle it
         "js": [],
@@ -33,7 +41,9 @@ module.exports = function(grunt) {
         }
     });
 
-    function requirePaths() {
+    function requirePaths(options) {
+
+        options = options || {};
 
         var paths = {};
         var jsPrefix = (config.isPackaged ? "js/" : "../js/");
@@ -106,9 +116,7 @@ module.exports = function(grunt) {
 
         requirejs: {
             options: {
-                paths: {
-
-                },
+                paths: requirePaths(),
                 shim: {
                     "backbone": { deps: ["underscore", "jquery"], exports: "Backbone" },
                     "handlebars": { exports: "Handlebars" },
