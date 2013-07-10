@@ -1,4 +1,4 @@
-define("application", ["i18n", "Handlebars"], function(i18n, Handlebars) {
+define("application", ["underscore", "i18n", "handlebars"], function(_, i18n, Handlebars) {
 
     "use strict";
 
@@ -25,6 +25,8 @@ define("application", ["i18n", "Handlebars"], function(i18n, Handlebars) {
     _.extend(Application.prototype, {
 
         _init: function(config) {
+
+            config = config || {};
 
             this.locale = config.locale || this.locale;
 

@@ -244,6 +244,13 @@ module.exports = function(grunt) {
         return srcFile;
     }
 
+    // generate the client-side require.js configuration set in the HTML head
+    var requirejsConfig = grunt.config("requirejs").options;
+    if (config.isPackaged) {
+        requirejsConfig.paths = requirePaths({ compiled: true });
+    }
+    grunt.config("requirejsConfig", requirejsConfig);
+
     grunt.loadNpmTasks("grunt-casperjs");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-less");
@@ -253,12 +260,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-requirejs");
     grunt.loadNpmTasks("grunt-contrib-connect");
 
+    grunt.registerTask("test", ["jshint", "casperjs"]);
     grunt.registerTask("index", "Generate index.html depending on configuration", function() {
         var src = abstractTags(grunt.file.read("index.html.tmpl"));
         grunt.file.write("build/index.html", grunt.template.process(src));
     });
-
-    grunt.registerTask("test", ["jshint", "casperjs"]);
 
     grunt.registerTask("default", ["jshint", "less", "concat", "uglify", "index", "connect", "watch"]);
 
