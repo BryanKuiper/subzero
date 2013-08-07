@@ -6,8 +6,6 @@ define("page", ["backbone", "view"], function(Backbone, View) {
 
         constructor: function(context, options) {
 
-            console.log(context);
-
             // context may be an Application or View object.
             var application;
             if (context instanceof View) {

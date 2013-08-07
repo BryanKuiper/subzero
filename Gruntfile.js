@@ -205,7 +205,8 @@ module.exports = function(grunt) {
                     "paths": ["css"]
                 },
                 "files": {
-                    "build/css/jsheaven.css": "css/jsheaven.less"
+                    "build/css/jsheaven.css": "css/jsheaven.less",
+                    "build/css/bootstrap.css": "css/bootstrap.css"
                 }
             },
             "production": {
@@ -214,7 +215,8 @@ module.exports = function(grunt) {
                     "yuicompress": true
                 },
                 "files": {
-                    "build/css/jsheaven.css": "css/jsheaven.less"
+                    "build/css/jsheaven.css": "css/jsheaven.less",
+                    "build/css/bootstrap.min.css": "css/bootstrap.min.css"
                 }
             }
         },

@@ -5,98 +5,40 @@
         <meta content="{{description}}" name="description">
         <meta content="{{keys}}" name="keywords">
 
+        <%
+            if (grunt.config("isPackaged")) {
+                print("<link href=\"./css/bootstrap.min.css\" rel=\"stylesheet\" />");
+            } else {
+                print("<link href=\"../css/bootstrap.css\" rel=\"stylesheet\" />");
+            }
+        %>
         <link href="./css/jsheaven.css" rel="stylesheet" />
     </head>
     <body>
-        <div id="page">
-            <div class='header' id='header' maxwidgets='1' showaddelement='no'>
+        <div class="header">
+        </div>
+        <div class="page container">
+            <div class='page-header'>
                 <div id='main'>
-
                     <div class='header-title'>{{title}}</div>
                     <div class='header-description'>{{description}}</div>
-
                 </div>
             </div>
 
-            <div id="content" class="narrowcolumn section">
-                <div id="AdSense1" class="widget AdSense">
-                    <div class="widget-content">
-                        <div class="clear"></div>
-                    </div>
-                </div>
-
-                <div id="Blog1" class="widget Blog">
-
-                </div>
-            </div>
-
-            <div id="leftsidebar">
-                <div id="sidebar1" class="sidebar section">
-                    <div id="Subscribe1" class="widget Subscribe">
-                        <div style="white-space:nowrap">
-                            <h2 class="title">Newest members</h2>
-                            <div class="widget-content">
-                                <div class="subscribe-wrapper subscribe-type-POST">
-                                    <div onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1POST&quot;));" id="SW_READER_LIST_CLOSED_Subscribe1POST" class="subscribe">
-                                        <div class="top">
-                                            <span class="inner">
-                                                <img src="http://img2.blogblog.com/img/widgets/arrow_dropdown.gif" class="subscribe-dropdown-arrow">
-                                                <span onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1POST&quot;));">
-                                                    <img border="0" align="absmiddle" src="http://img1.blogblog.com/img/icon_feed12.png" class="feed-icon" alt="">
-                                                    Arend van B.
-                                                </span>
-                                            </span>
-                                        </div>
-                                        <div class="bottom"></div>
-                                    </div>
-                                </div>
-                                <div class="subscribe-wrapper subscribe-type-COMMENT">
-                                    <div onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1COMMENT&quot;));" id="SW_READER_LIST_CLOSED_Subscribe1COMMENT" class="subscribe">
-                                        <div class="top">
-                                            <span class="inner">
-                                                <img src="http://img2.blogblog.com/img/widgets/arrow_dropdown.gif" class="subscribe-dropdown-arrow">
-                                                <span onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1COMMENT&quot;));">
-                                                    <img border="0" align="absmiddle" src="http://img1.blogblog.com/img/icon_feed12.png" class="feed-icon" alt="">
-                                                    Jos H.
-                                                </span>
-                                            </span>
-                                        </div>
-                                        <div class="bottom"></div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div id="AdSense3" class="widget AdSense">
-                        <div class="widget-content">
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div id="Feed1" class="widget Feed">
-                        <h2>Recent Posts</h2>
-                        <div id="Feed1_feedItemListDisplay" class="widget-content"><ul><li><span class="item-title"><a href="http://feedproxy.google.com/~r/Themelib/~3/mZmkp5tVaoE/" target="_self">Social SEO &ndash; A Boon for Your Online Business</a></span></li><li><span class="item-title"><a href="http://feedproxy.google.com/~r/Themelib/~3/ng6OJa4NfM0/" target="_self">Approaching periphery skills: A guide for web designers</a></span></li><li><span class="item-title"><a href="http://feedproxy.google.com/~r/Themelib/~3/4jVt6JBdoic/" target="_self">Impact of Search Engines on Business Marketing</a></span></li><li><span class="item-title"><a href="http://feedproxy.google.com/~r/Themelib/~3/osDcQdfyLXo/" target="_self">SEO Auditing: 5 Steps to Make Sure Your Site is Ready for Google</a></span></li><li><span class="item-title"><a href="http://feedproxy.google.com/~r/Themelib/~3/VuOoQsHo7bM/" target="_self">Domain Hosting: Essential Tips For Picking the Perfect Web Host</a></span></li></ul></div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- spacer for skins that want sidebar and main to be the same height-->
-                <div class="clear">&nbsp;</div>
-                <div id="footer" class="footer section"><div id="HTML1" class="widget HTML">
-                    <p>
-                        Copyright 2008 by I-Blog | Designed by
-                        <a href="http://designed.nu">Design Blog</a> | <a href="http://themelib.com/2008/10/i-blog-blogger-template/">Blogger Template</a> by <a href="http://themelib.com">ThemeLib.com</a>
-                    </p>
-                </div>
-            </div>
+            <div class="section page-content"></div>
+        </div>
+        <div class="page-footer footer">
+            <p class="text-center">Copyright 2013 @ 2line Creations</p>
         </div>
         <%
             if (grunt.config("isPackaged")) {
                 print("<script src=\"js/lib/require.js\"></script>");
+                print("<script src=\"js/lib/jquery.js\"></script>");
+                print("<script src=\"js/lib/bootstrap.min.js\"></script>");
             } else {
                 print("<script src=\"../js/lib/require.js\"></script>");
+                print("<script src=\"../js/lib/jquery.js\"></script>");
+                print("<script src=\"../js/lib/bootstrap.js\"></script>");
             }
 
             print(
