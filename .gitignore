@@ -2,6 +2,7 @@
 .idea
 .DS_Store
 js/.DS_Store
+js/lib/.DS_Store
 css/.DS_Store
 
 #Grunt build
