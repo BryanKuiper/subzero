@@ -1,10 +1,12 @@
-define("page", ["Backbone"], function(Backbone) {
+define("page", ["backbone", "view"], function(Backbone, View) {
 
     "use strict";
 
     return Backbone.View.extend({
 
         constructor: function(context, options) {
+
+            console.log(context);
 
             // context may be an Application or View object.
             var application;

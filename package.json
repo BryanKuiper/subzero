@@ -9,7 +9,8 @@
   "devDependencies": {
     "grunt-casperjs": "~1.0.6",
     "grunt-requirejs": "~0.3.5",
-    "grunt-contrib-requirejs": "~0.4.1"
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-handlebars": "~0.5.10"
   },
   "scripts": {
     "test": ""
@@ -24,8 +25,8 @@
   "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc",
   "project": {
     "name": "jsHeaven",
-    "title": "Welcome at jsHeaven",
-    "description": "Your meeting place for javascript",
-    "keys": "JS, Javascript, script"
+    "title": "Keepers training ONA'35",
+    "description": "Van oefeningen tot schema's",
+    "keys": "Keepers, Keeperstraining, ONA'35, ONA, O.N.A."
   }
 }

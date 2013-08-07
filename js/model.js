@@ -1,4 +1,4 @@
-define("model", ["Backbone"], function(Backbone) {
+define("model", ["backbone"], function(Backbone) {
 
     "use strict";
 

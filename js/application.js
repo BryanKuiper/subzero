@@ -1,4 +1,6 @@
-define("application", ["underscore", "i18n", "handlebars"], function(_, i18n, Handlebars) {
+define("application",
+       ["underscore", "i18n", "handlebars", "router", "pagefactory"],
+       function(_, i18n, Handlebars, Router, PageFactory) {
 
     "use strict";
 
@@ -19,6 +21,16 @@ define("application", ["underscore", "i18n", "handlebars"], function(_, i18n, Ha
          */
         this.locale = "en";
 
+        /**
+         * Dedicated to handle our pages
+         */
+        this.pageFactory = new PageFactory(this);
+
+        /**
+         * Dedicated to the router
+         */
+        this.router = new Router(this);
+
         this._init(configurations);
     }
 
@@ -34,6 +46,7 @@ define("application", ["underscore", "i18n", "handlebars"], function(_, i18n, Ha
             this.baseUrl = window.location.protocol + "//" + window.location.host + basePath;
 
             this._registerHandlebarsHelpers();
+            this.router.start(this);
         },
 
         _registerHandlebarsHelpers: function() {

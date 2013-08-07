@@ -1,4 +1,4 @@
-define("view", ["Backbone", "page"], function(Backbone, Page) {
+define("view", ["backbone", "page"], function(Backbone, Page) {
 
     "use strict";
 

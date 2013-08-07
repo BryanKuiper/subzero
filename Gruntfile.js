@@ -41,6 +41,13 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.file.recurse("tmpl", function(abspath, rootdir, subdir, filename) {
+        if (filename.substr(-11) === ".handlebars") {
+            sources.tmpl.push((subdir ? subdir + "/" : "") +
+                filename.substr(0, filename.length - 11));
+        }
+    });
+
     function requirePaths(options) {
 
         options = options || {};
@@ -218,9 +225,42 @@ module.exports = function(grunt) {
                 "logLevel": "debug"
             },
             "files": createPaths("tests/test", sources.tests, ".js")
+        },
+
+        handlebars: {
+            options: {
+                namespace: "JSH.Templates",
+                amd: true,
+                processContent: function(content) {
+                    return content.replace(/^[\x20\t]+/mg, '').replace(/[\x20\t]+$/mg, "")
+                        .replace(/^[\r\n]+/, '').replace(/[\r\n]*$/, "\n");
+                },
+                processName: function(path) {
+                    // refer to templates by the key defined in sources.tmpl
+                    for (var i = 0; i < sources.tmpl.length; i++) {
+                        var name = sources.tmpl[i];
+                        if (path.indexOf("tmpl/" + name + ".handlebars") > -1) {
+                            return name;
+                        }
+                    }
+                    return "unknown template key";
+                }
+            },
+            target: {
+                files: handlebarsFiles("build/tmpl/", sources.tmpl)
+            }
         }
 
     });
+
+    function handlebarsFiles(prefix, fileNames) {
+        var result = {};
+        fileNames.forEach(function(fileName) {
+            result[prefix + fileName + ".js"] = (config.isPackaged ? prefix : "tmpl/") +
+                fileName + ".handlebars";
+        });
+        return result;
+    }
 
     function createPaths(prefix, fileNames, extension) {
         var paths = [];
@@ -259,13 +299,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-contrib-requirejs");
     grunt.loadNpmTasks("grunt-contrib-connect");
+    grunt.loadNpmTasks("grunt-contrib-handlebars");
 
-    grunt.registerTask("test", ["jshint", "connect", "casperjs"]);
+    grunt.registerTask("test", ["jshint", "handlebars", "connect", "casperjs"]);
     grunt.registerTask("index", "Generate index.html depending on configuration", function() {
         var src = abstractTags(grunt.file.read("index.html.tmpl"));
         grunt.file.write("build/index.html", grunt.template.process(src));
     });
 
-    grunt.registerTask("default", ["jshint", "less", "concat", "uglify", "index", "connect", "watch"]);
+    grunt.registerTask("default", ["jshint", "less", "concat", "uglify", "handlebars", "index", "connect", "watch"]);
 
 };
