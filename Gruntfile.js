@@ -260,7 +260,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-requirejs");
     grunt.loadNpmTasks("grunt-contrib-connect");
 
-    grunt.registerTask("test", ["jshint", "casperjs"]);
+    grunt.registerTask("test", ["jshint", "connect", "casperjs"]);
     grunt.registerTask("index", "Generate index.html depending on configuration", function() {
         var src = abstractTags(grunt.file.read("index.html.tmpl"));
         grunt.file.write("build/index.html", grunt.template.process(src));
