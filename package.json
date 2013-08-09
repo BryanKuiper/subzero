@@ -1,7 +1,7 @@
 {
-  "name": "jsheaven",
+  "name": "learn2play",
   "version": "0.0.1",
-  "description": "A base directory for future references",
+  "description": "subzero based - learn 2 play",
   "main": "Gruntfile.js",
   "dependencies": {
     "grunt": "~0.4.1"
@@ -17,16 +17,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ilinea/subzero.git"
+    "url": "https://github.com/ilinea/learn2play.git"
   },
   "author": "Ilinea",
   "license": "BSD",
   "readmeFilename": "README.md",
   "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc",
   "project": {
-    "name": "jsHeaven",
-    "title": "Keepers training ONA'35",
-    "description": "Van oefeningen tot schema's",
-    "keys": "Keepers, Keeperstraining, ONA'35, ONA, O.N.A."
+    "name": "learn2play",
+    "title": "Learn2play",
+    "description": "Cursussen en trainingen",
+    "keys": "Cursussen, Trainingen, learn2play"
   }
 }
