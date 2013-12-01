@@ -20,13 +20,13 @@
     "url": "https://github.com/ilinea/subzero.git"
   },
   "author": "Ilinea",
-  "license": "BSD",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc",
   "project": {
     "name": "jsHeaven",
-    "title": "Keepers training ONA'35",
-    "description": "Van oefeningen tot schema's",
-    "keys": "Keepers, Keeperstraining, ONA'35, ONA, O.N.A."
+    "title": "De hemelpoort van javascript",
+    "description": "Kom binnen en kijk om je heen",
+    "keys": "JS, Backbone, BackboneJS, UnderscoreJS, RequireJS, javascript"
   }
 }
