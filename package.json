@@ -24,8 +24,8 @@
   "readmeFilename": "README.md",
   "gitHead": "ce3395c818e0462463e63cadf41bead5689447cc",
   "project": {
-    "name": "jsHeaven",
-    "title": "De hemelpoort van javascript",
+    "name": "Proof of Concepts",
+    "title": "PoC -> The next generation",
     "description": "Kom binnen en kijk om je heen",
     "keys": "JS, Backbone, BackboneJS, UnderscoreJS, RequireJS, javascript"
   }

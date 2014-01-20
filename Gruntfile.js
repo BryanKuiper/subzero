@@ -118,7 +118,14 @@ module.exports = function(grunt) {
         },
         "watch": {
             "files": ["<%= jshint.files %>", "index.html.tmpl"],
-            "tasks": ["jshint", "index"]
+            "tasks": ["jshint", "index"],
+            "css": {
+                "files": ["css/*"],
+                "tasks": ["jshint", "cssChange"],
+                "options": {
+                    livereload: true
+                }
+            }
         },
 
         requirejs: {
@@ -308,7 +315,7 @@ module.exports = function(grunt) {
         var src = abstractTags(grunt.file.read("index.html.tmpl"));
         grunt.file.write("build/index.html", grunt.template.process(src));
     });
-
+    grunt.registerTask("cssChange", ["less", "index"]);
     grunt.registerTask("default", ["jshint", "less", "concat", "uglify", "handlebars", "index", "connect", "watch"]);
 
 };
